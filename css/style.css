@@ -387,3 +387,48 @@ section img {
   word-wrap: break-word;
 }
 
+#close-popup {
+  margin-top: 20px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff6ec4, #ff4d88);
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(255, 77, 136, 0.3);
+}
+
+#close-popup:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255, 77, 136, 0.5);
+}
+
+#close-popup:active {
+  transform: scale(0.95);
+}
+
+#close-letter {
+  margin-top: 15px;
+  padding: 10px 24px;
+  border-radius: 25px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff8fab, #ff4d88);
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(255, 77, 136, 0.3);
+}
+
+#close-letter:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 77, 136, 0.5);
+}
+
+#close-letter:active {
+  transform: scale(0.92);
+}
