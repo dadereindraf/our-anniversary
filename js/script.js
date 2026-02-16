@@ -151,6 +151,57 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
+   ENVELOPE + HANDWRITING
+========================== */
+  const letterPopup = document.getElementById("letter-popup");
+  const openLetter = document.getElementById("open-letter");
+  const closeLetter = document.getElementById("close-letter");
+  const envelope = document.getElementById("envelope");
+  const handwritingText = document.getElementById("handwriting-text");
+
+  const romanticMessage = `Three years with you feels like a dream I never want to wake up from.
+You are my calm, my happiness, and my forever.
+I promise to always choose you, love you, and grow with you.
+No matter what happens, it will always be us. 💖`;
+
+  if (openLetter) {
+    openLetter.addEventListener("click", () => {
+      letterPopup.classList.add("active");
+
+      setTimeout(() => {
+        envelope.classList.add("open");
+        startHandwriting();
+      }, 500);
+    });
+  }
+
+  if (closeLetter) {
+    closeLetter.addEventListener("click", () => {
+      envelope.classList.remove("open");
+      handwritingText.innerHTML = "";
+
+      setTimeout(() => {
+        letterPopup.classList.remove("active");
+      }, 500);
+    });
+  }
+
+  function startHandwriting() {
+    let index = 0;
+    handwritingText.innerHTML = "";
+
+    function type() {
+      if (index < romanticMessage.length) {
+        handwritingText.innerHTML += romanticMessage.charAt(index);
+        index++;
+        setTimeout(type, 40);
+      }
+    }
+
+    type();
+  }
+
+  /* =========================
      CONFETTI (modern & clean)
   ========================== */
   const canvas = document.getElementById("confetti-canvas");

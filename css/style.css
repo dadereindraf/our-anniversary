@@ -1,3 +1,4 @@
+/* ================= GLOBAL ================= */
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +18,7 @@ body.blur {
   filter: blur(8px);
 }
 
-/* PARALLAX BACKGROUND */
+/* ================= BACKGROUND ================= */
 .parallax-bg {
   position: fixed;
   width: 100%;
@@ -26,7 +27,7 @@ body.blur {
   z-index: -2;
 }
 
-/* HEARTS */
+/* ================= HEARTS ================= */
 .hearts-container {
   position: fixed;
   width: 100%;
@@ -42,17 +43,11 @@ body.blur {
 }
 
 @keyframes floatUp {
-  from {
-    transform: translateY(100vh);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-10vh);
-    opacity: 0;
-  }
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 header {
   padding: 80px 20px;
 }
@@ -62,12 +57,7 @@ h1 {
   margin-bottom: 15px;
 }
 
-#countdown {
-  margin-bottom: 20px;
-  font-weight: 300;
-}
-
-/* BUTTON */
+/* ================= BUTTON ================= */
 #celebrate-btn {
   padding: 10px 25px;
   border-radius: 25px;
@@ -83,7 +73,7 @@ h1 {
   box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
 }
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 section {
   padding: 60px 20px;
   max-width: 900px;
@@ -97,7 +87,7 @@ section img {
   margin-top: 20px;
 }
 
-/* GALLERY */
+/* ================= GALLERY ================= */
 #gallery-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -116,7 +106,7 @@ section img {
   transform: scale(1.05);
 }
 
-/* FULLSCREEN IMAGE */
+/* ================= FULLSCREEN IMAGE ================= */
 .overlay {
   position: fixed;
   inset: 0;
@@ -132,7 +122,7 @@ section img {
   border-radius: 15px;
 }
 
-/* FADE IN */
+/* ================= FADE ANIMATION ================= */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -144,16 +134,15 @@ section img {
   transform: translateY(0);
 }
 
-/* CONFETTI */
+/* ================= CONFETTI ================= */
 #confetti-canvas {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   pointer-events: none;
   z-index: 9999;
 }
 
-/* ===== INTRO SCREEN ===== */
+/* ================= INTRO SCREEN ================= */
 #intro-screen {
   position: fixed;
   inset: 0;
@@ -161,11 +150,8 @@ section img {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   z-index: 10000;
-  transition:
-    opacity 1s ease,
-    transform 1s ease;
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 #intro-screen.hide {
@@ -174,18 +160,12 @@ section img {
   pointer-events: none;
 }
 
-.intro-content {
-  color: white;
-  animation: fadeUp 1.5s ease forwards;
-}
-
 .intro-content h1 {
   font-size: 40px;
   margin-bottom: 10px;
 }
 
 .intro-content p {
-  font-size: 18px;
   margin-bottom: 20px;
   opacity: 0.9;
 }
@@ -206,19 +186,7 @@ section img {
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
 }
 
-/* Animasi naik */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== Popup Overlay ===== */
+/* ================= POPUP ================= */
 .popup-overlay {
   position: fixed;
   inset: 0;
@@ -229,7 +197,7 @@ section img {
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.5s ease;
+  transition: 0.5s;
   z-index: 9999;
 }
 
@@ -238,16 +206,14 @@ section img {
   pointer-events: auto;
 }
 
-/* ===== Popup Box ===== */
 .popup-box {
   background: linear-gradient(135deg, #ffffff, #ffe6f0);
   padding: 40px;
   border-radius: 20px;
-  text-align: center;
   max-width: 400px;
   width: 90%;
   transform: scale(0.8);
-  transition: transform 0.4s ease;
+  transition: 0.4s;
   box-shadow: 0 20px 60px rgba(0,0,0,0.2);
   color: #333;
 }
@@ -256,60 +222,12 @@ section img {
   transform: scale(1);
 }
 
-.popup-box h2 {
-  margin-bottom: 15px;
-  color: #ff2e7a;
-}
-
-.popup-box p {
-  font-size: 15px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.popup-box button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 30px;
-  background: #ff4d88;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.popup-box button:hover {
-  background: #ff1a66;
-}
-
-/* ===== Surprise Button ===== */
-.surprise-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  padding: 12px 20px;
-  border-radius: 30px;
-  border: none;
-  background: #ff4d88;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 10px 25px rgba(255, 77, 136, 0.4);
-  transition: 0.3s;
-  z-index: 999;
-}
-
-.surprise-btn:hover {
-  transform: translateY(-3px);
-}
-
-/* ===== COUNTDOWN STYLE ===== */
-/* ===== COUNTDOWN (Compact Mobile Friendly) ===== */
+/* ================= COUNTDOWN ================= */
 .countdown {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 10px;
   margin: 20px 0;
-  flex-wrap: nowrap; /* ⬅️ jangan turun */
   white-space: nowrap;
 }
 
@@ -319,7 +237,6 @@ section img {
   padding: 12px 14px;
   border-radius: 12px;
   min-width: 60px;
-  transition: 0.3s;
 }
 
 .time-box span {
@@ -333,27 +250,140 @@ section img {
 
 .time-box small {
   font-size: 10px;
-  letter-spacing: 0.5px;
   opacity: 0.8;
 }
 
-/* Extra kecil untuk HP */
+/* Mobile countdown */
 @media (max-width: 480px) {
-  .countdown {
-    gap: 6px;
-  }
+  .countdown { gap: 6px; }
+  .time-box { padding: 8px 10px; min-width: 50px; }
+  .time-box span { font-size: 16px; }
+  .time-box small { font-size: 9px; }
+}
 
-  .time-box {
-    padding: 8px 10px;
-    min-width: 50px;
-  }
+/* ================= SURPRISE & LETTER BUTTON ================= */
+.surprise-btn,
+.letter-btn {
+  position: fixed;
+  right: 30px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 999;
+}
 
-  .time-box span {
-    font-size: 16px;
-  }
+.surprise-btn {
+  bottom: 30px;
+  background: #ff4d88;
+  color: white;
+  box-shadow: 0 10px 25px rgba(255, 77, 136, 0.4);
+}
 
-  .time-box small {
-    font-size: 9px;
-  }
+.letter-btn {
+  bottom: 90px;
+  background: white;
+  color: #ff4d88;
+  font-weight: bold;
+}
+
+.surprise-btn:hover,
+.letter-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* ================= LETTER OVERLAY ================= */
+.letter-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s ease;
+  z-index: 10000;
+}
+
+.letter-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ================= ENVELOPE WRAPPER ================= */
+.envelope-wrapper {
+  position: relative;
+  width: 320px;
+  height: 220px;
+  perspective: 1000px;
+}
+
+/* ================= ENVELOPE ================= */
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #ffccd5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* ================= FLAP ================= */
+.flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ff8fab;
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  transform-origin: top;
+  transition: transform 0.8s ease;
+  z-index: 3;
+}
+
+.envelope.open .flap {
+  transform: rotateX(-180deg);
+}
+
+/* ================= LETTER ================= */
+.letter {
+  position: absolute;
+  width: 85%;
+  height: 160px;           /* FIX tinggi */
+  left: 7.5%;
+  bottom: 15px;
+  background: #fffdf6;
+  border-radius: 8px;
+  padding: 30px 20px 20px 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  transform: translateY(100%);
+  transition: transform 0.8s ease;
+  font-family: "Brush Script MT", cursive;
+  color: #444;
+
+  overflow-y: auto;        /* scroll di dalam kertas */
+  text-align: center;
+}
+
+
+
+.envelope.open .letter {
+  transform: translateY(-30px);
+}
+
+/* Isi */
+.letter h2 {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #d63384;
+}
+
+.letter p {
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
 }
 
