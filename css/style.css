@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
 body {
@@ -10,6 +10,11 @@ body {
   color: white;
   overflow-x: hidden;
   text-align: center;
+  transition: filter 1.2s ease;
+}
+
+body.blur {
+  filter: blur(8px);
 }
 
 /* PARALLAX BACKGROUND */
@@ -75,7 +80,7 @@ h1 {
 
 #celebrate-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255,105,180,0.5);
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
 }
 
 /* SECTIONS */
@@ -115,7 +120,7 @@ section img {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -158,7 +163,9 @@ section img {
   align-items: center;
   text-align: center;
   z-index: 10000;
-  transition: opacity 1s ease, transform 1s ease;
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
 }
 
 #intro-screen.hide {
@@ -196,7 +203,7 @@ section img {
 
 #enter-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(255,255,255,0.7);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
 }
 
 /* Animasi naik */
@@ -209,4 +216,87 @@ section img {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ===== Popup Overlay ===== */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 9999;
+}
+
+.popup-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== Popup Box ===== */
+.popup-box {
+  background: linear-gradient(135deg, #ffffff, #ffe6f0);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  transform: scale(0.8);
+  transition: transform 0.4s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  color: #333;
+}
+
+.popup-overlay.active .popup-box {
+  transform: scale(1);
+}
+
+.popup-box h2 {
+  margin-bottom: 15px;
+  color: #ff2e7a;
+}
+
+.popup-box p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.popup-box button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d88;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.popup-box button:hover {
+  background: #ff1a66;
+}
+
+/* ===== Surprise Button ===== */
+.surprise-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: none;
+  background: #ff4d88;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 77, 136, 0.4);
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.surprise-btn:hover {
+  transform: translateY(-3px);
 }

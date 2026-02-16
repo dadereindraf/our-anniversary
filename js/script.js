@@ -1,34 +1,72 @@
 window.addEventListener("DOMContentLoaded", () => {
-
-  /* ===== Intro Screen ===== */
+  /* =========================
+     INTRO SCREEN
+  ========================== */
   const introScreen = document.getElementById("intro-screen");
   const enterBtn = document.getElementById("enter-btn");
   const bgMusic = document.getElementById("bg-music");
 
   if (enterBtn && introScreen) {
     enterBtn.addEventListener("click", () => {
-      introScreen.classList.add("hide");
+      document.body.classList.remove("blur");
+      introScreen.style.opacity = "0";
+      introScreen.style.pointerEvents = "none";
 
-      // play music setelah klik
-      bgMusic.volume = 0.3;
-      bgMusic.play().catch((err) => {
-        console.log("Autoplay blocked:", err);
-      });
+      setTimeout(() => {
+        introScreen.style.display = "none";
+      }, 800);
+
+      if (bgMusic) {
+        bgMusic.volume = 0.3;
+        bgMusic.play().catch(() => {});
+      }
     });
   }
 
-  /* ===== Fade-in ===== */
-  const faders = document.querySelectorAll(".fade-in");
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      }
-    });
-  });
-  faders.forEach((el) => observer.observe(el));
+  /* =========================
+     FADE IN ON SCROLL
+  ========================== */
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
 
-  /* ===== Gallery Auto ===== */
+  document.querySelectorAll(".fade-in").forEach((el) => {
+    observer.observe(el);
+  });
+
+  /* =========================
+     TYPING EFFECT (clean)
+  ========================== */
+  const typingText = document.getElementById("typing-text");
+
+  if (typingText) {
+    const message =
+      "Three years with you feels like a beautiful dream I never want to wake up from. 💖 Thank you for being my happiness, my safe place, and my forever.";
+
+    let index = 0;
+    typingText.innerHTML = "";
+
+    function type() {
+      if (index < message.length) {
+        typingText.innerHTML += message.charAt(index);
+        index++;
+        setTimeout(type, 35);
+      }
+    }
+
+    setTimeout(type, 1200);
+  }
+
+  /* =========================
+     AUTO GALLERY
+  ========================== */
   const totalPhotos = 23;
   const galleryContainer = document.getElementById("gallery-container");
 
@@ -45,13 +83,18 @@ window.addEventListener("DOMContentLoaded", () => {
         overlay.className = "overlay";
         overlay.innerHTML = `<img src="${img.src}" class="full-img">`;
         document.body.appendChild(overlay);
-        overlay.addEventListener("click", () => overlay.remove());
+
+        overlay.addEventListener("click", () => {
+          overlay.remove();
+        });
       });
     }
   }
 
-  /* ===== Countdown ===== */
-  const countDownDate = new Date("Feb 16, 2027 00:00:00").getTime();
+  /* =========================
+     COUNTDOWN
+  ========================== */
+  const countDownDate = new Date("Feb 19, 2027 00:00:00").getTime();
   const countdownEl = document.getElementById("countdown");
 
   if (countdownEl) {
@@ -68,15 +111,21 @@ window.addEventListener("DOMContentLoaded", () => {
       const hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor(
+        (distance % (1000 * 60)) / 1000
+      );
 
       countdownEl.innerText =
         `${days}d ${hours}h ${minutes}m ${seconds}s until our next anniversary`;
     }, 1000);
   }
 
-  /* ===== Floating Hearts ===== */
+  /* =========================
+     FLOATING HEARTS (soft & elegant)
+  ========================== */
   const heartsContainer = document.querySelector(".hearts-container");
 
   if (heartsContainer) {
@@ -84,67 +133,69 @@ window.addEventListener("DOMContentLoaded", () => {
       const heart = document.createElement("div");
       heart.classList.add("heart");
       heart.innerHTML = "❤";
+
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 6 + Math.random() * 4 + "s";
-      heart.style.fontSize = 15 + Math.random() * 20 + "px";
+      heart.style.animationDuration = 8 + Math.random() * 4 + "s";
+      heart.style.fontSize = 14 + Math.random() * 14 + "px";
+      heart.style.opacity = 0.4;
+
       heartsContainer.appendChild(heart);
-      setTimeout(() => heart.remove(), 9000);
+      setTimeout(() => heart.remove(), 10000);
     }
 
-    setInterval(createHeart, 1500);
+    setInterval(createHeart, 2500);
   }
 
-  /* ===== Confetti (only on click) ===== */
+  /* =========================
+     CONFETTI (modern & clean)
+  ========================== */
   const canvas = document.getElementById("confetti-canvas");
   const celebrateBtn = document.getElementById("celebrate-btn");
 
   if (canvas && celebrateBtn) {
     const ctx = canvas.getContext("2d");
-    let confetti = [];
+    let particles = [];
     let animationId;
 
-    function startConfetti() {
+    function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      confetti = [];
+    }
 
-      for (let i = 0; i < 120; i++) {
-        confetti.push({
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    function startConfetti() {
+      particles = [];
+
+      for (let i = 0; i < 100; i++) {
+        particles.push({
           x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: Math.random() * 6 + 2,
-          d: Math.random() * 120,
-          color: `hsl(${Math.random() * 360},100%,60%)`,
-          tilt: Math.random() * 10 - 10,
+          y: -20,
+          size: Math.random() * 8 + 4,
+          speedY: Math.random() * 3 + 2,
+          speedX: Math.random() * 2 - 1,
+          rotation: Math.random() * 360,
+          color: `hsl(${Math.random() * 360}, 100%, 60%)`
         });
       }
 
-      animateConfetti();
-      setTimeout(stopConfetti, 3000);
+      animate();
+      setTimeout(stopConfetti, 2500);
     }
 
-    function animateConfetti() {
+    function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      confetti.forEach((c, i) => {
-        ctx.beginPath();
-        ctx.lineWidth = c.r;
-        ctx.strokeStyle = c.color;
-        ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
-        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 2);
-        ctx.stroke();
+      particles.forEach((p) => {
+        p.y += p.speedY;
+        p.x += p.speedX;
 
-        c.y += Math.cos(c.d) + 1 + c.r / 2;
-        c.x += Math.sin(c.d);
-        c.tilt = Math.sin(c.d);
-
-        if (c.y > canvas.height) {
-          confetti[i].y = -10;
-          confetti[i].x = Math.random() * canvas.width;
-        }
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
       });
 
-      animationId = requestAnimationFrame(animateConfetti);
+      animationId = requestAnimationFrame(animate);
     }
 
     function stopConfetti() {
@@ -152,9 +203,30 @@ window.addEventListener("DOMContentLoaded", () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    celebrateBtn.addEventListener("click", () => {
-      startConfetti();
-    });
+    celebrateBtn.addEventListener("click", startConfetti);
   }
+  /* =========================
+   SURPRISE POPUP
+========================== */
+const popup = document.getElementById("surprise-popup");
+const closePopup = document.getElementById("close-popup");
+const openSurprise = document.getElementById("open-surprise");
+
+// otomatis muncul 5 detik setelah masuk
+setTimeout(() => {
+  if (popup) popup.classList.add("active");
+}, 5000);
+
+if (closePopup) {
+  closePopup.addEventListener("click", () => {
+    popup.classList.remove("active");
+  });
+}
+
+if (openSurprise) {
+  openSurprise.addEventListener("click", () => {
+    popup.classList.add("active");
+  });
+}
 
 });
