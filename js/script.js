@@ -34,7 +34,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.2 },
   );
 
   document.querySelectorAll(".fade-in").forEach((el) => {
@@ -92,36 +92,40 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     COUNTDOWN
-  ========================== */
-  const countDownDate = new Date("Feb 19, 2027 00:00:00").getTime();
-  const countdownEl = document.getElementById("countdown");
+   COUNTDOWN (modern style)
+========================== */
+  const countDownDate = new Date("Feb 19, 2026 00:00:00").getTime();
 
-  if (countdownEl) {
-    setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countDownDate - now;
+  const daysEl = document.getElementById("days");
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+  const secondsEl = document.getElementById("seconds");
 
-      if (distance < 0) {
-        countdownEl.innerText = "Happy Anniversary 💖";
-        return;
-      }
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) / (1000 * 60)
-      );
-      const seconds = Math.floor(
-        (distance % (1000 * 60)) / 1000
-      );
+    if (distance < 0) {
+      document.querySelector(".countdown").innerHTML =
+        "<h2>Happy Anniversary 💖</h2>";
+      return;
+    }
 
-      countdownEl.innerText =
-        `${days}d ${hours}h ${minutes}m ${seconds}s until our next anniversary`;
-    }, 1000);
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+    );
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    daysEl.textContent = days;
+    hoursEl.textContent = hours;
+    minutesEl.textContent = minutes;
+    secondsEl.textContent = seconds;
   }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 
   /* =========================
      FLOATING HEARTS (soft & elegant)
@@ -176,7 +180,7 @@ window.addEventListener("DOMContentLoaded", () => {
           speedY: Math.random() * 3 + 2,
           speedX: Math.random() * 2 - 1,
           rotation: Math.random() * 360,
-          color: `hsl(${Math.random() * 360}, 100%, 60%)`
+          color: `hsl(${Math.random() * 360}, 100%, 60%)`,
         });
       }
 
@@ -208,25 +212,24 @@ window.addEventListener("DOMContentLoaded", () => {
   /* =========================
    SURPRISE POPUP
 ========================== */
-const popup = document.getElementById("surprise-popup");
-const closePopup = document.getElementById("close-popup");
-const openSurprise = document.getElementById("open-surprise");
+  const popup = document.getElementById("surprise-popup");
+  const closePopup = document.getElementById("close-popup");
+  const openSurprise = document.getElementById("open-surprise");
 
-// otomatis muncul 5 detik setelah masuk
-setTimeout(() => {
-  if (popup) popup.classList.add("active");
-}, 5000);
+  // otomatis muncul 5 detik setelah masuk
+  setTimeout(() => {
+    if (popup) popup.classList.add("active");
+  }, 5000);
 
-if (closePopup) {
-  closePopup.addEventListener("click", () => {
-    popup.classList.remove("active");
-  });
-}
+  if (closePopup) {
+    closePopup.addEventListener("click", () => {
+      popup.classList.remove("active");
+    });
+  }
 
-if (openSurprise) {
-  openSurprise.addEventListener("click", () => {
-    popup.classList.add("active");
-  });
-}
-
+  if (openSurprise) {
+    openSurprise.addEventListener("click", () => {
+      popup.classList.add("active");
+    });
+  }
 });
