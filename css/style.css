@@ -432,3 +432,27 @@ section img {
 #close-letter:active {
   transform: scale(0.92);
 }
+
+.outside-close {
+  margin-top: 20px;
+  padding: 10px 28px;
+  border-radius: 30px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff6ec4, #ff4d88);
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(255, 77, 136, 0.4);
+}
+
+.outside-close:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(255, 77, 136, 0.6);
+}
+
+.outside-close:active {
+  transform: scale(0.92);
+}
+
